@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Камыш — натуральный сухоцвет для дорогого интерьера</title>
+  <meta name="description" content="Камыш — 100% натуральный сухоцвет. Уют, спокойствие и стиль для любого интерьера. От природы — для вашего уюта." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="#top">
+      <img src="assets/img/logo-kamysh-gold.jpg" alt="" class="logo-mark" />
+      <span>Камыш</span>
+    </a>
+    <nav class="nav">
+      <a href="#shop">Витрина</a>
+      <a href="#pack">Упаковка</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#order">Заказ</a>
+    </nav>
+    <a class="nav-cta" href="#shop">Купить</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-img" src="assets/img/hero-vitrine-window.jpg" alt="Витрина магазина: много ваз с камышом за стеклом" />
+      <div class="hero-veil"></div>
+      <div class="hero-copy">
+        <p class="brand">Камыш</p>
+        <p class="slogan">От природы — для вашего уюта</p>
+        <h1>Премиальный декор<br />для любого интерьера</h1>
+        <p class="lede">Создаёт уют и атмосферу. Дополняет любой стиль. Стильный акцент, который мягко притягивает взгляд.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#shop">Смотреть витрину</a>
+          <a class="btn btn-glass" href="#stories">Ваши истории</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>100% натуральное · уют и спокойствие · стиль для любого интерьера · без лишних хлопот ·</span>
+        <span>100% натуральное · уют и спокойствие · стиль для любого интерьера · без лишних хлопот ·</span>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Преимущества">
+      <div class="benefits-grid">
+        <article>
+          <h3>Уют и атмосфера</h3>
+          <p>Создаёт уют и атмосферу спокойствия — дом сразу ощущается теплее и собраннее.</p>
+        </article>
+        <article>
+          <h3>Любой стиль</h3>
+          <p>Дополняет любой стиль интерьера: сканди, классика, бохо, минимализм, современный лофт.</p>
+        </article>
+        <article>
+          <h3>Стильный акцент</h3>
+          <p>Премиальный декор, который привлекает внимание — мягко, без крика и визуального шума.</p>
+        </article>
+        <article>
+          <h3>100% натуральное</h3>
+          <p>Натуральный камыш, пушистые соцветия, прочные стебли и природные оттенки.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="shop" class="shop">
+      <div class="section-head">
+        <p class="eyebrow">Витрина</p>
+        <h2>Камыш в продаже</h2>
+        <p>От <strong>500&nbsp;₽</strong> — 5 веточек высотой 50&nbsp;см. Выше и больше — цена растёт пропорционально.</p>
+      </div>
+      <div class="filters" id="shop-filters" aria-label="Фильтры">
+        <button type="button" class="filter-chip is-active" data-filter="all">Все</button>
+        <button type="button" class="filter-chip" data-filter="to60">50–65 см</button>
+        <button type="button" class="filter-chip" data-filter="60to90">80 см</button>
+        <button type="button" class="filter-chip" data-filter="from100">от 100 см</button>
+        <button type="button" class="filter-chip" data-filter="qty5">5 веточек</button>
+        <button type="button" class="filter-chip" data-filter="qty10">10 веточек</button>
+        <button type="button" class="filter-chip" data-filter="qty15plus">от 15 веточек</button>
+      </div>
+      <div class="grid" id="product-grid"></div>
+    </section>
+
+    <section id="build" class="build">
+      <div class="build-layout">
+        <div class="build-shot">
+          <img id="preview-image" src="assets/img/vase-ceramic-white.jpg" alt="Пучок натурального камыша" />
+          <span class="badge badge-qty" id="badge-qty">5 веточек</span>
+          <span class="badge badge-size" id="badge-size">50 см</span>
+        </div>
+        <form class="build-form" id="builder-form">
+          <p class="eyebrow">Собрать пучок</p>
+          <h2>Ваш размер — ваша цена</h2>
+          <p class="build-note">База: 5 веточек × 50&nbsp;см = 500&nbsp;₽. Количество: 5, 10, 15, 20, 30, 50, 100 или своё «под заказ».</p>
+
+          <div class="price-block">
+            <div>
+              <p class="price" id="total-price">500 ₽</p>
+              <p class="price-old" id="old-price">от 500 ₽ за мини</p>
+            </div>
+            <p class="selection" id="preview-label">50 см · 5 веточек</p>
+          </div>
+
+          <fieldset>
+            <legend>Высота</legend>
+            <div class="chips" id="size-chips"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Количество веточек</legend>
+            <div class="chips" id="qty-chips"></div>
+            <label class="custom-qty-label">
+              Своё количество (под заказ)
+              <input id="custom-qty" type="number" min="1" max="1000" step="1" placeholder="Например: 7 или 45" />
+            </label>
+          </fieldset>
+
+          <div class="actions">
+            <button class="btn btn-dark" type="submit">Купить сейчас</button>
+            <button class="btn btn-soft" type="button" id="to-cart">В заказ</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <div class="manifesto-media">
+        <img src="assets/img/closeup-plumes.jpg" alt="Крупный план пушистых метёлок камыша" />
+      </div>
+      <div class="manifesto-copy">
+        <p class="eyebrow">Натуральная красота в вашем доме</p>
+        <h2>Уют и стиль<br />без лишних хлопот</h2>
+        <p>Мягкие и пушистые соцветия, прочные стебли, натуральные оттенки — камыш создаёт атмосферу спокойствия и становится стильным акцентом в любом интерьере.</p>
+        <p>Это 100% натуральный материал и гармоничные цветовые сочетания: декор, который работает годами и не требует постоянного ухода.</p>
+      </div>
+    </section>
+
+    <section id="stories" class="stories">
+      <div class="section-head">
+        <p class="eyebrow">Журнал</p>
+        <h2>Истории о камыше</h2>
+        <p>Коротко и красиво — зачем он в доме, как звучит в дизайне и почему кажется дорогим.</p>
+      </div>
+
+      <article class="story story-a">
+        <div class="story-media">
+          <img src="assets/img/interior-sofa.jpg" alt="Камыш у дивана в светлой гостиной" />
+        </div>
+        <div class="story-body">
+          <p class="eyebrow">В интерьере</p>
+          <h3>Как одна ваза делает комнату «дорогой»</h3>
+          <p>Дорогой интерьер редко кричит цветом. Он говорит фактурой. Камыш — это воздух и мягкость: стебли тянут взгляд вверх, метёлки ловят свет днём и дают силуэт вечером.</p>
+          <p>Поставьте пучок у дивана, у окна или в пустом углу — и пространство перестаёт выглядеть «недоделанным». Именно так стилисты закрывают высокие потолки и «холодные» минималистичные стены.</p>
+          <ul>
+            <li>5–10 веточек — для консоли и стола</li>
+            <li>15–30 — для гостиной и фотозоны</li>
+            <li>50–100 — для студий, витрин и опта</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="story story-b">
+        <div class="story-body">
+          <p class="eyebrow">В дизайне</p>
+          <h3>Почему дизайнеры выбирают пушистые стебли</h3>
+          <p>В современном дизайне ценится контраст: гладкий камень — и мягкое перо, чёрный металл — и тёплая солома, белая стена — и живой силуэт. Камыш даёт этот контраст мгновенно.</p>
+          <p>Он работает в сканди, джапанди, современной классике и спокойном бохо. Не спорит с мебелью. Не требует «поддерживать» букет каждые три дня. Просто стоит — и делает кадр красивее.</p>
+          <p class="quote">«Это не тренд на сезон. Это язык сдержанной роскоши: тишина цвета и осязаемая природа.»</p>
+        </div>
+        <div class="story-media">
+          <img src="assets/img/tall-floor.jpg" alt="Высокая композиция камыша в коридоре" />
+        </div>
+      </article>
+
+      <article class="story story-c">
+        <div class="story-media">
+          <img src="assets/img/product-vase.jpg" alt="Камыш в стеклянной вазе" />
+        </div>
+        <div class="story-body">
+          <p class="eyebrow">Польза и красота</p>
+          <h3>Прекрасен каждый день — и почти без ухода</h3>
+          <p>Камыш полезен тем, кто устал от скоропортящихся букетов. Не нужен полив. Не боится отпуска. Не осыпается «за ночь», если бережно обращаться и держать в сухом месте без прямого палящего солнца.</p>
+          <p>Его красота — в натуральном беже: цвет шампанского и спелой пшеницы. Такой оттенок делает комнату мягче и визуально дороже, потому что выглядит естественно, а не «декоративно нарисованно».</p>
+          <div class="mini-facts">
+            <div><strong>100%</strong><span>натуральный камыш</span></div>
+            <div><strong>Уют</strong><span>атмосфера спокойствия</span></div>
+            <div><strong>Стиль</strong><span>акцент для любого интерьера</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="cinema" aria-label="Премиальный акцент">
+      <div class="cinema-sticky">
+        <img src="assets/img/closeup-plumes.jpg" alt="Пушистые соцветия камыша" />
+        <div class="cinema-veil"></div>
+        <div class="cinema-copy">
+          <p class="cinema-line" data-peak="0.12">Создаёт уют и атмосферу</p>
+          <p class="cinema-line" data-peak="0.38">Дополняет любой стиль интерьера</p>
+          <p class="cinema-line" data-peak="0.64">Стильный акцент, который притягивает взгляд</p>
+          <p class="cinema-line" data-peak="0.88">Премиальный декор — без лишних хлопот</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lookbook">
+      <div class="section-head">
+        <p class="eyebrow">Lookbook</p>
+        <h2>Как он смотрится</h2>
+      </div>
+      <div class="lookbook-grid">
+        <figure class="look-lg parallax-media">
+          <img src="assets/img/product-bundle.jpg" alt="Плотный пучок камыша" />
+          <figcaption>Мягкие пушистые соцветия</figcaption>
+        </figure>
+        <figure class="parallax-media">
+          <img src="assets/img/pampas1.jpg" alt="Камыш и сухоцветы в интерьере" />
+          <figcaption>Натуральные оттенки</figcaption>
+        </figure>
+        <figure class="parallax-media">
+          <img src="assets/img/interior-sofa.jpg" alt="Камыш рядом с диваном" />
+          <figcaption>Уют и спокойствие дома</figcaption>
+        </figure>
+        <figure class="look-wide parallax-media">
+          <img src="assets/img/tall-floor.jpg" alt="Напольный камыш" />
+          <figcaption>Стильный акцент в любом интерьере</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="pack" class="pack">
+      <div class="section-head">
+        <p class="eyebrow">Упаковка</p>
+        <h2>Как уходит ваш заказ</h2>
+        <p>Отправляем из Таганрога бережно: чтобы пушистые соцветия доехали целыми и выглядели дорого уже в руках.</p>
+      </div>
+      <div class="pack-grid">
+        <article class="pack-card">
+          <h3>Мини и средние (50–80 см)</h3>
+          <p>Крафт-коробка + мягкая бумага. Пучок фиксируем, чтобы стебли не ломались и метёлки не сминались.</p>
+        </article>
+        <article class="pack-card">
+          <h3>Высокие (100–120 см)</h3>
+          <p>Жёсткий тубус или длинная коробка. Не сгибаем. На упаковке — логотип Камыш и короткая открытка.</p>
+        </article>
+        <article class="pack-card">
+          <h3>Опт и крупные наборы</h3>
+          <p>Несколько слоёв защиты, маркировка «не переворачивать», трек-номер после отправки.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="delivery" class="delivery">
+      <div class="section-head">
+        <p class="eyebrow">Доставка из Таганрога</p>
+        <h2>Как получаете Камыш</h2>
+        <p>Точную сумму скажем после города и высоты. Ориентиры ниже — чтобы было понятно сразу.</p>
+      </div>
+      <div class="delivery-grid">
+        <article class="delivery-card">
+          <h3>Самовывоз · Таганрог</h3>
+          <p class="price-tag">0 ₽</p>
+          <p>Забираете сами — без ожидания службы.</p>
+        </article>
+        <article class="delivery-card">
+          <h3>По Таганрогу / РО</h3>
+          <p class="price-tag">от 350 ₽</p>
+          <p>Курьер или удобный пункт. Уточним при заказе.</p>
+        </article>
+        <article class="delivery-card">
+          <h3>СДЭК по России</h3>
+          <p class="price-tag">от 450 ₽</p>
+          <p>До ПВЗ. Для высоких пучков — тубус, цена может быть выше из‑за длины.</p>
+        </article>
+        <article class="delivery-card">
+          <h3>Почта России</h3>
+          <p class="price-tag">от 350 ₽</p>
+          <p>Когда важно доставить дальше и спокойнее по сроку.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="order" class="order">
+      <div class="order-panel">
+        <p class="eyebrow">Заказ</p>
+        <h2>Оформить Камыш</h2>
+        <p>Отправка из Таганрога. Заявка придёт в Telegram — подтвердим пучок, упаковку и доставку.</p>
+        <form id="order-form">
+          <label>
+            Имя
+            <input name="name" type="text" required placeholder="Как к вам обращаться" />
+          </label>
+          <label>
+            Телефон или Telegram
+            <input name="contact" type="text" required placeholder="+7… или @username" />
+          </label>
+          <label>
+            Комментарий
+            <textarea name="note" rows="3" placeholder="Например: 80 см, 15 веточек"></textarea>
+          </label>
+          <input type="hidden" name="selection" id="selection-field" />
+          <label class="consent">
+            <input name="consent" type="checkbox" required />
+            <span>Согласен(на) с <a href="oferta.html">офертой</a> и <a href="privacy.html">обработкой данных</a></span>
+          </label>
+          <button class="btn btn-dark" type="submit">Отправить заявку</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <aside class="order-aside">
+        <img src="assets/img/product-vase.jpg" alt="Камыш для заказа" />
+        <p>Таганрог · от 500 ₽ · 50–120 см · бережная упаковка</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="assets/img/logo-kamysh-gold.jpg" alt="" class="logo-mark" />
+      <div>
+        <p class="logo">Камыш</p>
+        <p class="footer-slogan">От природы — для вашего уюта</p>
+      </div>
+    </div>
+    <div class="footer-right">
+      <nav class="footer-links" aria-label="Документы">
+        <a href="oferta.html">Оферта</a>
+        <a href="privacy.html">Конфиденциальность</a>
+        <a href="delivery.html">Доставка и оплата</a>
+        <a href="returns.html">Возврат</a>
+      </nav>
+      <p>Отправка из Таганрога · премиальный декор</p>
+    </div>
+  </footer>
+
+  <script src="js/telegram-config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/effects.js"></script>
+</body>
+</html>
+
