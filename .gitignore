@@ -1,0 +1,6 @@
+js/telegram-config.js
+.env
+.env.*
+*.jfif
+.DS_Store
+Thumbs.db
