@@ -1,83 +1,38 @@
+const PRICE_PER_STEM_50CM = 100; // 5 веток × 50 см = 500 ₽
+
 const sizes = [
-  { cm: 50, base: 220, image: "assets/img/product-vase.jpg" },
-  { cm: 65, base: 260, image: "assets/img/interior-sofa.jpg" },
-  { cm: 80, base: 320, image: "assets/img/product-bundle.jpg" },
-  { cm: 100, base: 420, image: "assets/img/tall-floor.jpg" },
-  { cm: 110, base: 480, image: "assets/img/hero-kamysh.jpg" },
+  { cm: 50, image: "assets/img/vase-ceramic-white.jpg" },
+  { cm: 65, image: "assets/img/vase-ribbed.jpg" },
+  { cm: 80, image: "assets/img/vase-glass-clear.jpg" },
+  { cm: 100, image: "assets/img/vase-terracotta.jpg" },
+  { cm: 110, image: "assets/img/vase-black-matte.jpg" },
+  { cm: 120, image: "assets/img/vase-stone.jpg" },
 ];
 
-const quantities = [5, 9, 10, 12, 15, 19, 25, 27];
+const quantities = [5, 10, 15, 20, 30, 50, 100];
+
+function priceFor(cm, qty) {
+  return Math.round(PRICE_PER_STEM_50CM * (cm / 50) * qty);
+}
 
 const readyProducts = [
-  {
-    title: "Сухоцвет камыш",
-    cm: 80,
-    qty: 15,
-    price: 812,
-    old: 2702,
-    image: "assets/img/product-bundle.jpg",
-  },
-  {
-    title: "Сухоцвет камыш",
-    cm: 65,
-    qty: 10,
-    price: 360,
-    old: 1900,
-    image: "assets/img/product-vase.jpg",
-  },
-  {
-    title: "Пампасная трава",
-    cm: 55,
-    qty: 5,
-    price: 641,
-    old: 1050,
-    image: "assets/img/interior-sofa.jpg",
-  },
-  {
-    title: "Сухоцвет камыш",
-    cm: 110,
-    qty: 5,
-    price: 1493,
-    old: 10300,
-    image: "assets/img/tall-floor.jpg",
-  },
-  {
-    title: "Декоративный камыш",
-    cm: 100,
-    qty: 12,
-    price: 1290,
-    old: 3200,
-    image: "assets/img/hero-kamysh.jpg",
-  },
-  {
-    title: "Сухоцвет камыш",
-    cm: 50,
-    qty: 9,
-    price: 490,
-    old: 1200,
-    image: "assets/img/closeup-plumes.jpg",
-  },
-  {
-    title: "Камыш бежевый",
-    cm: 70,
-    qty: 5,
-    price: 520,
-    old: 1680,
-    image: "assets/img/pampas1.jpg",
-  },
-  {
-    title: "Напольный камыш",
-    cm: 90,
-    qty: 9,
-    price: 980,
-    old: 2450,
-    image: "assets/img/tall-floor.jpg",
-  },
-];
+  { title: "Мини-пучок", cm: 50, qty: 5, image: "assets/img/vase-ceramic-white.jpg" },
+  { title: "Для вазы", cm: 65, qty: 10, image: "assets/img/vase-ribbed.jpg" },
+  { title: "Гостиная", cm: 80, qty: 15, image: "assets/img/vase-glass-clear.jpg" },
+  { title: "Объёмный пучок", cm: 100, qty: 20, image: "assets/img/vase-terracotta.jpg" },
+  { title: "Напольный", cm: 110, qty: 30, image: "assets/img/vase-black-matte.jpg" },
+  { title: "Студия / витрина", cm: 120, qty: 50, image: "assets/img/vase-stone.jpg" },
+  { title: "Оптом", cm: 80, qty: 100, image: "assets/img/vase-glass-clear.jpg" },
+  { title: "Старт-набор", cm: 50, qty: 10, image: "assets/img/vase-ceramic-white.jpg" },
+].map((item) => ({
+  ...item,
+  price: priceFor(item.cm, item.qty),
+}));
 
 const state = {
-  size: sizes[2],
-  qty: 15,
+  size: sizes[0],
+  qty: 5,
+  customQty: null,
   filter: "all",
 };
 
@@ -96,75 +51,105 @@ const formStatus = document.getElementById("form-status");
 const productGrid = document.getElementById("product-grid");
 const toCart = document.getElementById("to-cart");
 const shopFilters = document.getElementById("shop-filters");
+const customQtyInput = document.getElementById("custom-qty");
 
 function formatPrice(value) {
   return `${value.toLocaleString("ru-RU")} ₽`;
 }
 
+function currentQty() {
+  if (state.customQty && state.customQty > 0) return state.customQty;
+  return state.qty;
+}
+
 function calcPrice() {
-  return Math.round(state.size.base * (state.qty / 10));
+  return priceFor(state.size.cm, currentQty());
 }
 
 function matchesFilter(item) {
   switch (state.filter) {
     case "to60":
-      return item.cm <= 60;
+      return item.cm <= 65;
     case "60to90":
-      return item.cm > 60 && item.cm <= 90;
+      return item.cm === 80;
     case "from100":
       return item.cm >= 100;
     case "qty5":
-      return item.qty <= 5;
+      return item.qty === 5;
     case "qty10":
-      return item.qty <= 10;
+      return item.qty === 10;
+    case "qty15plus":
+      return item.qty >= 15;
     default:
       return true;
   }
 }
 
-function renderChips(container, items, getLabel, isActive, onPick) {
-  container.innerHTML = "";
-  items.forEach((item) => {
+function renderSizeChips() {
+  sizeChips.innerHTML = "";
+  sizes.forEach((item) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "chip" + (isActive(item) ? " is-active" : "");
-    button.textContent = getLabel(item);
-    button.addEventListener("click", () => onPick(item));
-    container.appendChild(button);
+    button.className = "chip" + (item.cm === state.size.cm ? " is-active" : "");
+    button.textContent = `${item.cm} см`;
+    button.addEventListener("click", () => {
+      state.size = item;
+      updateUI();
+    });
+    sizeChips.appendChild(button);
   });
 }
 
-function updateUI() {
-  renderChips(
-    sizeChips,
-    sizes,
-    (item) => `${item.cm} см`,
-    (item) => item.cm === state.size.cm,
-    (item) => {
-      state.size = item;
-      updateUI();
-    }
-  );
-
-  renderChips(
-    qtyChips,
-    quantities,
-    (item) => `${item} шт`,
-    (item) => item === state.qty,
-    (item) => {
+function renderQtyChips() {
+  qtyChips.innerHTML = "";
+  quantities.forEach((item) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    const active = !state.customQty && item === state.qty;
+    button.className = "chip" + (active ? " is-active" : "");
+    button.textContent = `${item} шт`;
+    button.addEventListener("click", () => {
       state.qty = item;
+      state.customQty = null;
+      if (customQtyInput) customQtyInput.value = "";
+      updateUI();
+    });
+    qtyChips.appendChild(button);
+  });
+
+  const customBtn = document.createElement("button");
+  customBtn.type = "button";
+  customBtn.className = "chip" + (state.customQty ? " is-active" : "");
+  customBtn.textContent = "Под заказ";
+  customBtn.addEventListener("click", () => {
+    if (customQtyInput) {
+      customQtyInput.focus();
+      const value = Number(customQtyInput.value);
+      state.customQty = value > 0 ? value : 1;
       updateUI();
     }
-  );
+  });
+  qtyChips.appendChild(customBtn);
+}
 
+function updateUI() {
+  renderSizeChips();
+  renderQtyChips();
+
+  const qty = currentQty();
   const price = calcPrice();
-  const label = `${state.size.cm} см · ${state.qty} веточек`;
+  const label = `${state.size.cm} см · ${qty} веточек`;
+  const stem = Math.round(PRICE_PER_STEM_50CM * (state.size.cm / 50));
+
   previewImage.src = state.size.image;
-  previewLabel.textContent = label;
-  badgeQty.textContent = `${state.qty} веточек`;
+  previewLabel.textContent = `${label} · ${stem} ₽/ветка`;
+  badgeQty.textContent = `${qty} веточек`;
   badgeSize.textContent = `${state.size.cm} см`;
   totalPrice.textContent = formatPrice(price);
-  oldPrice.textContent = formatPrice(Math.round(price * 2.4));
+  if (oldPrice) {
+    oldPrice.textContent = `от ${formatPrice(priceFor(50, 5))} за мини`;
+    oldPrice.style.textDecoration = "none";
+  }
   selectionField.value = `${label} · ${formatPrice(price)}`;
 }
 
@@ -174,13 +159,13 @@ function goToOrder(prefix) {
 }
 
 function pickProduct(item) {
-  const matchedSize =
-    sizes.find((size) => size.cm === item.cm) ||
-    sizes.reduce((best, size) =>
-      Math.abs(size.cm - item.cm) < Math.abs(best.cm - item.cm) ? size : best
-    );
+  const matchedSize = sizes.find((size) => size.cm === item.cm) || sizes[0];
   state.size = matchedSize;
-  state.qty = quantities.includes(item.qty) ? item.qty : quantities[0];
+  state.qty = quantities.includes(item.qty) ? item.qty : item.qty;
+  state.customQty = quantities.includes(item.qty) ? null : item.qty;
+  if (customQtyInput) {
+    customQtyInput.value = state.customQty ? String(state.customQty) : "";
+  }
   updateUI();
   document.getElementById("build").scrollIntoView({ behavior: "smooth" });
 }
@@ -190,7 +175,8 @@ function renderCatalog() {
   productGrid.innerHTML = "";
 
   if (!items.length) {
-    productGrid.innerHTML = `<p style="grid-column:1/-1;color:var(--muted)">Нет позиций по фильтру — выберите другой.</p>`;
+    productGrid.innerHTML =
+      '<p style="grid-column:1/-1;color:var(--muted)">Нет позиций по фильтру — выберите другой.</p>';
     return;
   }
 
@@ -209,7 +195,6 @@ function renderCatalog() {
         <p>натуральный · ${item.cm} см · ${item.qty} шт</p>
         <div class="tile-price">
           <strong>${formatPrice(item.price)}</strong>
-          <s>${formatPrice(item.old)}</s>
         </div>
       </div>
     `;
@@ -227,6 +212,19 @@ shopFilters.addEventListener("click", (event) => {
   });
   renderCatalog();
 });
+
+if (customQtyInput) {
+  customQtyInput.addEventListener("input", () => {
+    const value = Number(customQtyInput.value);
+    if (value > 0) {
+      state.customQty = Math.floor(value);
+      updateUI();
+    } else {
+      state.customQty = null;
+      updateUI();
+    }
+  });
+}
 
 builderForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -273,6 +271,7 @@ orderForm.addEventListener("submit", async (event) => {
 
   const message = [
     "🌾 Новая заявка — Камыш",
+    "📍 Отправка: Таганрог",
     "",
     `👤 Имя: ${name}`,
     `📞 Контакт: ${contact}`,
@@ -291,7 +290,7 @@ orderForm.addEventListener("submit", async (event) => {
     orderForm.reset();
   } catch (error) {
     if (error && error.message === "no-config") {
-      formStatus.textContent = "Бот ещё не подключён. Пришлите токен и chat_id — подключу.";
+      formStatus.textContent = "Бот ещё не подключён на сайте. Локально заявки работают при наличии config.";
     } else {
       formStatus.textContent = "Не удалось отправить. Проверьте бота или напишите нам напрямую.";
       console.error(error);

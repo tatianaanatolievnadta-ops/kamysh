@@ -63,10 +63,24 @@ a {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--display);
-  font-size: 1.55rem;
+  font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
+}
+
+.logo-mark {
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px rgba(184, 148, 74, 0.45),
+    0 0 0 3px rgba(247, 244, 237, 0.9),
+    0 8px 22px rgba(140, 105, 40, 0.28);
 }
 
 .nav {
@@ -123,12 +137,22 @@ a {
 }
 
 .brand {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.55rem;
   font-family: var(--display);
   font-size: clamp(3.2rem, 9vw, 6rem);
   font-weight: 600;
   line-height: 0.9;
   letter-spacing: -0.02em;
+}
+
+.slogan {
+  margin: 0 0 1rem;
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(247, 244, 237, 0.88);
 }
 
 .hero h1 {
@@ -211,12 +235,160 @@ a {
   color: var(--muted);
 }
 
+.benefits {
+  padding: 2.5rem 4vw 0;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.benefits-grid article {
+  padding: 1.4rem 1.2rem;
+  background: var(--paper);
+}
+
+.benefits-grid h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.benefits-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .shop,
 .build,
 .stories,
 .lookbook,
+.pack,
+.delivery,
 .order {
   padding: 5rem 4vw;
+}
+
+.cinema {
+  position: relative;
+  height: 220vh;
+  background: #171513;
+}
+
+.cinema-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.cinema-sticky img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(calc(1.05 + var(--p, 0) * 0.12));
+  filter: saturate(calc(0.9 + var(--p, 0) * 0.2));
+}
+
+.cinema-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(23, 21, 19, 0.25), rgba(23, 21, 19, 0.72)),
+    radial-gradient(circle at 50% 40%, transparent 20%, rgba(23, 21, 19, 0.45) 80%);
+}
+
+.cinema-copy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cinema-line {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 500;
+  color: #f7f4ed;
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.pack-grid,
+.delivery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.delivery-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pack-card,
+.delivery-card {
+  padding: 1.5rem 1.35rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.pack-card h3,
+.delivery-card h3 {
+  margin: 0 0 0.55rem;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.pack-card p,
+.delivery-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.price-tag {
+  margin: 0 0 0.55rem !important;
+  color: var(--sale) !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.has-motion .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.has-motion .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.parallax-media,
+.story-media,
+.manifesto-media,
+.hero-media,
+.hero {
+  overflow: hidden;
+}
+
+.parallax-media img,
+.story-media img,
+.manifesto-media img {
+  will-change: transform;
 }
 
 .section-head {
@@ -467,6 +639,30 @@ legend {
   background: rgba(23, 21, 19, 0.06);
 }
 
+.custom-qty-label {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.custom-qty-label input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+}
+
 .actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -713,6 +909,7 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  align-items: end;
   padding: 1.8rem 4vw 2.4rem;
   background: var(--paper);
   border-top: 1px solid var(--line);
@@ -720,7 +917,76 @@ textarea:focus {
 }
 
 .footer .logo {
+  margin: 0;
   color: var(--ink);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.footer-brand .logo-mark {
+  width: 3.8rem;
+  height: 3.8rem;
+}
+
+.footer-slogan {
+  margin: 0.35rem 0 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #4f5d4c;
+}
+
+.footer-right {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  justify-content: flex-end;
+  font-size: 0.88rem;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.footer-links a:hover {
+  color: var(--ink);
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0.2rem 0 0.4rem;
+  font-size: 0.88rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.consent input {
+  width: auto;
+  margin-top: 0.2rem;
+  accent-color: var(--ink);
+}
+
+.consent a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 @keyframes rise {
@@ -757,6 +1023,9 @@ textarea:focus {
     display: none;
   }
 
+  .benefits-grid,
+  .pack-grid,
+  .delivery-grid,
   .grid,
   .build-layout,
   .manifesto,
@@ -765,6 +1034,16 @@ textarea:focus {
   .order,
   .lookbook-grid {
     grid-template-columns: 1fr;
+  }
+
+  .benefits-grid,
+  .pack-grid,
+  .delivery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cinema {
+    height: 180vh;
   }
 
   .lookbook-grid {
@@ -792,12 +1071,29 @@ textarea:focus {
 }
 
 @media (max-width: 640px) {
+  .benefits-grid,
+  .pack-grid,
+  .delivery-grid,
   .grid,
   .actions {
     grid-template-columns: 1fr;
   }
 
+  .cinema-line {
+    font-size: 1.35rem;
+  }
+
   .footer {
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-right {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
   }
 }

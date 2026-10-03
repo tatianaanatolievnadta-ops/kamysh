@@ -29,7 +29,7 @@ jobs:
           CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           mkdir -p _site
-          cp -r index.html css js assets _site/
+          cp -r index.html css js assets docs _site/
           if [ -n "$BOT_TOKEN" ] && [ -n "$CHAT_ID" ]; then
             cat > _site/js/telegram-config.js <<EOF
           window.TELEGRAM_CONFIG = {
